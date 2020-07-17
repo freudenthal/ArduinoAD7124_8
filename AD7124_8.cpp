@@ -268,7 +268,7 @@ const AD7124_8::FilterRegister AD7124_8::InitFilterSettings0
 	.Reject5060Hz = true,
 	.PostFilterType = PostFilerTypeSettings::SPS27,
 	.SingleCycle = false,
-	.DataRate = 5
+	.DataRate = 1
 };
 
 const AD7124_8::FilterRegister AD7124_8::InitFilterSettings1
@@ -277,7 +277,7 @@ const AD7124_8::FilterRegister AD7124_8::InitFilterSettings1
 	.Reject5060Hz = true,
 	.PostFilterType = PostFilerTypeSettings::SPS27,
 	.SingleCycle = false,
-	.DataRate = 5
+	.DataRate = 1
 };
 
 const AD7124_8::FilterRegister AD7124_8::InitFilterSettings2
@@ -286,7 +286,7 @@ const AD7124_8::FilterRegister AD7124_8::InitFilterSettings2
 	.Reject5060Hz = true,
 	.PostFilterType = PostFilerTypeSettings::SPS27,
 	.SingleCycle = false,
-	.DataRate = 5
+	.DataRate = 1
 };
 
 const AD7124_8::FilterRegister AD7124_8::InitFilterSettingsDefault
@@ -295,7 +295,7 @@ const AD7124_8::FilterRegister AD7124_8::InitFilterSettingsDefault
 	.Reject5060Hz = true,
 	.PostFilterType = PostFilerTypeSettings::SPS27,
 	.SingleCycle = false,
-	.DataRate = 5
+	.DataRate = 1
 };
 
 AD7124_8::AD7124_8(uint8_t _SelectPin)
