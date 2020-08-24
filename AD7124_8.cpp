@@ -424,6 +424,18 @@ uint8_t AD7124_8::ComputeCRC8(uint8_t* pBuf, uint8_t bufSize)
 	return crc;
 }
 
+double AD7124::ConvertDataRegisterToDouble(const DataRegister Register, const bool Bipolar, const float Gain, const float Vref)
+{
+	if (Bipolar)
+	{
+		return ( (double)(Regsiter.Data) / ( (double)(8388608.0) ) - 1.0) * (double)(Vref)/(double)(Gain);
+	}
+	else
+	{
+		return (double)(Register.Data)*( ( (double)(Vref) ) /( (double)(16777216.0) * (double)(Gain)) );
+	}
+}
+
 AD7124_8::StatusRegister AD7124_8::GetStatusRegister()
 {
 	uint8_t ReturnData = 0;
