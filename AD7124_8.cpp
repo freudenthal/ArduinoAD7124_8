@@ -860,11 +860,11 @@ AD7124_8::ConfigurationRegister AD7124_8::GetConfigurationRegister(uint8_t Confi
 	ReturnData.Single = 0;
 	Registers RegisterToUse = ConvertConfigurationToRegister(Configuration);
 	SendReadCommand(RegisterToUse, ReturnData.Array);
-	ReturnRegister.Bipolar = bitRead(ReturnData.Single, AD7124_8_CH_MAP_REG_CH_ENABLE);
-	ReturnRegister.BufferREFP = bitRead(ReturnData.Single, AD7124_8_CH_MAP_REG_CH_ENABLE);
-	ReturnRegister.BufferREFN = bitRead(ReturnData.Single, AD7124_8_CH_MAP_REG_CH_ENABLE);
-	ReturnRegister.BufferAINP = bitRead(ReturnData.Single, AD7124_8_CH_MAP_REG_CH_ENABLE);
-	ReturnRegister.BufferAINM = bitRead(ReturnData.Single, AD7124_8_CH_MAP_REG_CH_ENABLE);
+	ReturnRegister.Bipolar = bitRead(ReturnData.Single, AD7124_8_CFG_REG_BIPOLAR);
+	ReturnRegister.BufferREFP = bitRead(ReturnData.Single, AD7124_8_CFG_REG_REF_BUFP);
+	ReturnRegister.BufferREFN = bitRead(ReturnData.Single, AD7124_8_CFG_REG_REF_BUFM);
+	ReturnRegister.BufferAINP = bitRead(ReturnData.Single, AD7124_8_CFG_REG_AIN_BUFP);
+	ReturnRegister.BufferAINM = bitRead(ReturnData.Single, AD7124_8_CFG_REG_AINN_BUFM);
 	ReturnRegister.Burnout = static_cast<BurnoutSettings>( (ReturnData.Single & AD7124_8_CFG_REG_BURNOUT_MASK) >> AD7124_8_CFG_REG_BURNOUT_SHIFT );
 	ReturnRegister.Reference = static_cast<ReferenceSettings>( (ReturnData.Single & AD7124_8_CFG_REG_REF_SEL_MASK) >> AD7124_8_CFG_REG_REF_SEL_SHIFT );
 	ReturnRegister.Gain = static_cast<GainSettings>( (ReturnData.Single & AD7124_8_CFG_REG_PGA_MASK) >> AD7124_8_CFG_REG_PGA_SHIFT );
