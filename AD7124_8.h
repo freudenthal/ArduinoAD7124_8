@@ -522,8 +522,9 @@ class AD7124_8
 		bool IsSampling();
 		bool SampleReady();
 		bool SetSampleRate(uint8_t Channel, uint16_t DataRate);
-		double ConvertDataRegisterToDouble(const DataRegister Register, const float Vref);
+		double ConvertDataRegisterToDouble(const DataRegister Register, const float VrefExternal);
 		float ConvertGainToScalar(GainSettings GainInput);
+		float ConverVrefToScalar(ReferenceSettings VrefSetting, const float VrefExternal);
 		double ConvertDataRegisterToDouble(const DataRegister Register, const bool Bipolar, const float Gain, const float Vref);
 		StatusRegister GetStatusRegister();
 		StatusRegister ConvertToStatus(uint8_t Data);
