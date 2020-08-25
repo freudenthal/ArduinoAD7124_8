@@ -424,7 +424,49 @@ uint8_t AD7124_8::ComputeCRC8(uint8_t* pBuf, uint8_t bufSize)
 	return crc;
 }
 
-double AD7124::ConvertDataRegisterToDouble(const DataRegister Register, const bool Bipolar, const float Gain, const float Vref)
+double AD7124_8::ConvertDataRegisterToDouble(const DataRegister Register, const float Vref)
+{
+	if (Register.HasStatus)
+	{
+		ChannelRegister ChannelRegisterActive = GetChannelRegister(Register.Status.CurrentChannel);
+		ConfigurationRegister ConfigurationRegisterActive = GetConfigurationRegister(ChannelRegisterActive.Configuration);
+		float GainScalar = ConvertGainToScalar(ConfigurationRegisterActive.Gain);
+		return ConvertDataRegisterToDouble(Register, ConfigurationRegisterActive.Bipolar, GainScalar, Vref);
+	}
+	else
+	{
+		Serial.print("<AD7124ERROR>(Unable to find channel. Please use complete convert function.)\n");
+		return 0.0
+	}
+}
+
+float AD7124_8::ConvertGainToScalar(GainSettings GainInput)
+{
+	switch(GainInput)
+	{
+		case Gain1x:
+			return 1.0;
+		case Gain2x:
+			return 2.0;
+		case Gain4x:
+			return 4.0;
+		case Gain8x:
+			return 8.0;
+		case Gain16x:
+			return 16.0;
+		case Gain32x:
+			return 32.0;
+		case Gain64x:
+			return 64.0;
+		case Gain128x:
+			return 128.0;
+		default:
+			Serial.print("<AD7124ERROR>(Unable to convert gain.)\n");
+			return 0.0;
+	}
+}
+
+double AD7124_8::ConvertDataRegisterToDouble(const DataRegister Register, const bool Bipolar, const float Gain, const float Vref)
 {
 	if (Bipolar)
 	{
