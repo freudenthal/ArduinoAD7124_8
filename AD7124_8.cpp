@@ -1090,6 +1090,7 @@ void AD7124_8::SendWriteCommand(Registers Register, uint8_t* DataToSend)
 {
 	if (Register == Registers::REG_NO)
 	{
+		Serial.print("<AD7124>(Error in register write. No register given.)\n");
 		return;
 	}
 	uint8_t DataBytes = RegisterDictionary[static_cast<uint8_t>(Register)].size;
