@@ -424,7 +424,7 @@ uint8_t AD7124_8::ComputeCRC8(uint8_t* pBuf, uint8_t bufSize)
 	return crc;
 }
 
-double AD7124::ConvertDataRegisterToDouble(const DataRegister Register, const float VrefExternal)
+double AD7124_8::ConvertDataRegisterToDouble(const DataRegister Register, const float VrefExternal)
 {
 	if (Register.HasStatus)
 	{
